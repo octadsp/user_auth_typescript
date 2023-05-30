@@ -11,5 +11,5 @@ export const random = () => crypto.randomBytes(128).toString('base64');
 // Method .update(SECRET) digunakan untuk mengupdate HMAC dengan nilai SECRET
 // Method .digest() digunakan untuk menghasilkan nilai hash dari HMAC
 export const authentication = (salt: string, password: string) => {
-    return crypto.createHmac('sha256', [salt, password].join('/')).update(SECRET).digest();
+    return crypto.createHmac('sha256', [salt, password].join('/')).update(SECRET).digest('hex');
 };
