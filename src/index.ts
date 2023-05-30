@@ -6,6 +6,8 @@ import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import router from './router';
+
 const app = express();
 
 app.use(cors({
@@ -27,3 +29,5 @@ const MONGO_URL = "mongodb+srv://octaadsp:yMRYRhvrt3QvyTUG@cluster1.o0nlwma.mong
 mongoose.Promise = Promise; // Mengatur implementasi Promise bawaan JavaScript, untuk menghindari peringatan deprecated sehingga bisa menggunakan promise dari JS seperti async/await
 mongoose.connect(MONGO_URL); // Membuat koneksi antara aplikasi dengan server DB mongo dengan URL
 mongoose.connection.on('error', (error: Error) => console.log(error)); // Pesan Error ketika gagal melakukan koneksi ke server DB mongo , maka function callback akan dijalankan
+
+app.use('/', router());
